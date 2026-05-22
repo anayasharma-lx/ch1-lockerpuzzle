@@ -5,268 +5,464 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>The Locker Puzzle — Ganita Prakash Grade 8</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f4f0;--surface:#fff;--surface2:#f0ede8;--border:#d8d4cc;
-  --text:#1a1814;--text2:#5a5650;--text3:#9a958e;
-  --blue:#2c5f9e;--red:#c0392b;--green:#1a7a4a;--orange:#e08020;
-  --gold:#c8960c;--gold-bg:#fffbeb;--gold-border:#f0d060;
-  --font:'DM Sans',-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
+  --paper:  #faf8f4;
+  --paper2: #f3f0ea;
+  --paper3: #e8e3d8;
+  --ink:    #1c1a16;
+  --ink2:   #4a4640;
+  --ink3:   #8a8580;
+  --rule:   #d4cfc5;
+  --teal:   #1d6a72;
+  --teal2:  #2a8a94;
+  --teal-bg:#e8f4f5;
+  --teal-light:#9FE1CB;
+  --rust:   #b84a2a;
+  --rust-bg:#fdf0ec;
+  --gold:   #c08030;
+  --gold2:  #EF9F27;
+  --gold-bg:#fdf5e8;
+  --gold-light:#FAC775;
+  --sage:   #3a6a48;
+  --sage-bg:#eaf2ec;
+  --violet: #6a4a90;
+  --font:  'DM Sans', sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --mono:  'DM Mono', ui-monospace, monospace;
+  --shadow: 0 2px 12px rgba(28,26,22,.08);
 }
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.5}
-.page{max-width:900px;margin:0 auto;padding:28px 20px}
-.lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:5px}
-.title{font-size:22px;font-weight:700;margin-bottom:5px}
-.subtitle{font-size:14px;color:var(--text2);margin-bottom:22px;max-width:560px;line-height:1.5}
-.card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px}
 
-/* Controls */
-.ctrl-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
-.btn{padding:7px 18px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;color:var(--text);background:var(--surface);cursor:pointer;font-family:var(--font);transition:all .12s}
-.btn:hover:not(:disabled){border-color:var(--text)}
+body{
+  font-family:var(--font);background:var(--paper);color:var(--ink);
+  min-height:100vh;-webkit-font-smoothing:antialiased;
+  padding:28px 20px 40px;line-height:1.6;
+  background-image:
+    radial-gradient(circle at 15% 25%,rgba(192,128,48,.05) 0,transparent 50%),
+    radial-gradient(circle at 85% 75%,rgba(29,106,114,.05) 0,transparent 50%);
+}
+.app{max-width:960px;margin:0 auto}
+
+/* ── HEADER ── */
+.header{margin-bottom:24px;padding-bottom:18px;border-bottom:1.5px solid var(--rule)}
+.chapter-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--paper2);border:1.5px solid var(--rule);
+  border-radius:20px;padding:4px 14px 4px 10px;
+  font-size:11px;font-weight:600;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:12px
+}
+.badge-num{
+  width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;
+  font-size:12px;font-weight:700;font-family:var(--mono);
+  display:flex;align-items:center;justify-content:center
+}
+h1{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-.3px;line-height:1.2;margin-bottom:5px}
+.header-sub{font-size:14px;color:var(--ink2);max-width:580px;line-height:1.55}
+
+/* ── CONCEPT ── */
+.concept{
+  background:var(--gold-bg);border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;padding:11px 16px;margin-bottom:16px;
+  font-family:var(--serif);font-style:italic;font-size:13.5px;color:#4a3010;line-height:1.65
+}
+.concept strong{font-style:normal;font-weight:700;color:#3a2008}
+
+/* ── CONTROLS ── */
+.controls{
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  margin-bottom:14px
+}
+.btn{
+  padding:7px 16px;border:1.5px solid var(--rule);border-radius:8px;
+  font-family:var(--font);font-size:13px;font-weight:600;
+  color:var(--ink2);background:var(--paper);cursor:pointer;transition:all .12s
+}
+.btn:hover:not(:disabled){border-color:var(--ink3);color:var(--ink)}
 .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn-go{background:var(--blue);border-color:var(--blue);color:#fff}
-.btn-go:hover:not(:disabled){background:#1a4a8a}
-.btn-stop{background:var(--red);border-color:var(--red);color:#fff}
-.btn-stop:hover:not(:disabled){background:#a02020}
-.speed-wrap{display:flex;align-items:center;gap:8px}
-.speed-wrap label{font-size:13px;color:var(--text2);font-weight:500}
-.speed-wrap input{width:90px;height:5px;accent-color:var(--blue)}
-.person-tag{background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;font-family:var(--mono);font-weight:700;color:var(--blue);font-size:13px}
-
-/* Message banner */
-.msg-banner{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13.5px;color:var(--text2);line-height:1.5;min-height:46px;display:flex;align-items:center;gap:10px}
-.msg-banner strong{color:var(--text)}
-
-/* Locker grid */
-.lockers-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
-.lockers-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
-.locker{
-  aspect-ratio:.72;border-radius:7px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;cursor:pointer;transition:all .15s;border:1.5px solid;user-select:none;
+.btn-run{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn-run:hover:not(:disabled){background:#155a62;border-color:#155a62;color:#fff}
+.btn-stop{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn-stop:hover:not(:disabled){background:#8a2a10;border-color:#8a2a10;color:#fff}
+.speed-wrap{display:flex;align-items:center;gap:7px}
+.speed-wrap label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
+.speed-wrap input{accent-color:var(--teal);width:80px;height:5px}
+.person-pill{
+  margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--ink2);background:var(--paper2);border:1.5px solid var(--rule);
+  border-radius:20px;padding:4px 12px
 }
-.locker.closed{background:var(--surface2);border-color:var(--border)}
-.locker.closed:hover{border-color:var(--text3)}
-.locker.open{background:var(--gold-bg);border-color:var(--gold-border)}
-.locker.open.square{background:#fff8d0;border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-border)}
-.locker.highlight{outline:2px solid var(--blue);outline-offset:1px}
-.locker.selected{outline:2px solid #7c3aed;outline-offset:1px}
-.lock-num{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--text3);line-height:1}
-.locker.open .lock-num{color:var(--gold)}
-.locker.open.square .lock-num{color:#7a5800;font-weight:700}
-.lock-state{font-size:12px;line-height:1;margin-top:2px}
 
-/* Info cards */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-@media(max-width:520px){.info-grid{grid-template-columns:1fr}}
-.info-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px}
-.info-card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:8px}
-.factor-chips{display:flex;flex-wrap:wrap;gap:5px}
-.fchip{padding:3px 10px;border-radius:6px;font-family:var(--mono);font-size:12.5px;font-weight:600;border:1.5px solid}
-.fchip.pair{background:rgba(26,122,74,.08);border-color:#90c8a0;color:var(--green)}
-.fchip.solo{background:rgba(200,150,12,.12);border-color:var(--gold-border);color:var(--gold)}
-.toggle-big{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px}
-.verdict{display:inline-block;padding:4px 10px;border-radius:7px;font-size:12px;font-weight:600;margin-top:4px;border:1.5px solid}
-.verdict-open{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
-.verdict-closed{background:var(--surface2);border-color:var(--border);color:var(--text3)}
+/* ── MESSAGE BANNER ── */
+.msg{
+  background:var(--paper2);border:1.5px solid var(--rule);border-radius:9px;
+  padding:9px 14px;font-size:13px;color:var(--ink2);line-height:1.5;
+  min-height:40px;display:flex;align-items:center;margin-bottom:14px
+}
+.msg strong{color:var(--ink);font-weight:600}
 
-/* Results */
-.result-strip{background:var(--gold-bg);border:1.5px solid var(--gold-border);border-radius:12px;padding:16px;display:none}
-.result-strip h3{font-size:13px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
-.open-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.ochip{background:#fff;border:1.5px solid var(--gold-border);border-radius:7px;padding:5px 12px;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--gold);cursor:pointer;transition:all .1s}
-.ochip:hover{background:var(--gold-bg);border-color:var(--gold)}
+/* ── BODY: GRID + PANEL SIDE BY SIDE ── */
+.body-row{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+@media(max-width:700px){.body-row{grid-template-columns:1fr}}
 
-/* Insight */
-.insight{background:#fff8f0;border:1.5px solid #f0d8c0;border-radius:10px;padding:13px 18px;font-size:13.5px;color:#6b4400;line-height:1.65;margin-top:14px}
-.insight strong{color:#a05000}
+/* ── LOCKER GRID ── */
+.grid-wrap{
+  background:var(--paper2);border:1.5px solid var(--rule);
+  border-radius:12px;padding:8px
+}
+.locker-grid{
+  display:grid;grid-template-columns:repeat(10,1fr);gap:3px
+}
+.lk{
+  height:44px;border-radius:5px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;cursor:pointer;
+  border:1.5px solid;transition:all .13s;user-select:none;position:relative;
+  gap:1px
+}
+
+/* CLOSED — clear white tile, visible border */
+.lk.closed{
+  background:#fff;
+  border-color:var(--rule)
+}
+.lk.closed:hover{border-color:var(--ink3);background:var(--paper2)}
+
+/* OPEN — non-square: teal */
+.lk.open{
+  background:#1D9E75;
+  border-color:#0F6E56
+}
+/* OPEN — perfect square: rich amber */
+.lk.open.sq{
+  background:#BA7517;
+  border-color:#633806;
+  box-shadow:0 0 0 2px #EF9F27
+}
+/* Highlight during animation */
+.lk.hl{outline:2px solid var(--teal2);outline-offset:1px}
+/* Selected by click */
+.lk.sel{outline:2.5px solid var(--violet);outline-offset:1px}
+
+.lk-num{
+  font-family:var(--mono);font-size:9px;font-weight:600;line-height:1
+}
+.lk.closed .lk-num{color:var(--ink3)}
+.lk.open   .lk-num{color:rgba(255,255,255,.85);font-weight:700}
+.lk.open.sq .lk-num{color:#FAEEDA;font-weight:700}
+
+/* tiny open indicator dot */
+.lk-dot{width:4px;height:4px;border-radius:50%;opacity:0}
+.lk.open .lk-dot{background:rgba(255,255,255,.6);opacity:1}
+.lk.open.sq .lk-dot{background:#FAC775;opacity:1}
+
+/* ── OPEN RESULT STRIP ── */
+.open-strip{
+  display:none;margin-top:10px;
+  background:var(--teal-bg);border:1.5px solid var(--teal-light);
+  border-radius:10px;padding:10px 12px
+}
+.open-strip .strip-lbl{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--teal);margin-bottom:7px
+}
+.ochips{display:flex;flex-wrap:wrap;gap:5px}
+.ochip{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  padding:3px 9px;border-radius:6px;
+  background:#fff;border:1.5px solid var(--teal-light);color:var(--teal);
+  cursor:pointer;transition:all .1s
+}
+.ochip:hover,.ochip.sq-chip{
+  background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)
+}
+
+/* ── SIDE PANEL ── */
+.side-panel{display:flex;flex-direction:column;gap:10px}
+
+.stat-box{
+  background:#fff;border:1.5px solid var(--rule);
+  border-radius:10px;padding:12px 14px
+}
+.sb-lbl{
+  font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--ink3);margin-bottom:5px
+}
+.sb-big{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--ink);line-height:1.1}
+.sb-sub{font-size:12px;color:var(--ink2);margin-top:3px}
+.verdict-tag{
+  display:inline-block;font-size:11px;font-weight:600;
+  padding:3px 9px;border-radius:6px;margin-top:6px;border:1.5px solid
+}
+.v-open{background:var(--teal-bg);border-color:var(--teal-light);color:var(--teal)}
+.v-sq  {background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)}
+.v-closed{background:var(--paper2);border-color:var(--rule);color:var(--ink3)}
+
+.factors-box{
+  background:#fff;border:1.5px solid var(--rule);border-radius:10px;padding:12px 14px
+}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:3px 8px;border-radius:5px;border:1.5px solid
+}
+/* paired factors — green */
+.chip-pair{background:var(--sage-bg);border-color:#8abcaa;color:var(--sage)}
+/* self-paired square root — amber */
+.chip-solo{background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)}
+
+/* insight */
+.insight-box{
+  background:var(--gold-bg);border:1px solid #e0c080;
+  border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+  padding:11px 13px;font-size:12.5px;color:#6b4400;line-height:1.6
+}
+.insight-box strong{color:#4a2e00;font-weight:600}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="lbl">Chapter 1 · A Square and A Cube</div>
-  <div class="title">The Locker Puzzle</div>
-  <div class="subtitle">100 lockers, 100 people. Person n toggles every nth locker. Which lockers stay open? Click Run to watch — or Skip to End to reveal the answer immediately.</div>
+<div class="app">
 
-  <div class="card">
-    <div class="ctrl-row">
-      <button class="btn btn-go" id="btnPlay">Run</button>
-      <button class="btn btn-stop" id="btnStop" disabled>Stop</button>
-      <button class="btn" id="btnReset">Reset</button>
-      <button class="btn" id="btnSkip">Skip to end</button>
-      <div class="speed-wrap">
-        <label>Speed</label>
-        <input type="range" id="speedSlider" min="1" max="10" value="6">
+  <div class="header">
+    <div class="chapter-badge"><div class="badge-num">1</div>Chapter 1 · A Square and A Cube</div>
+    <h1>The Locker Puzzle</h1>
+    <p class="header-sub">100 lockers, 100 students. Student n toggles every nth locker. Which lockers stay open? Run the simulation — then click any tile to find out why.</p>
+  </div>
+
+  <div class="concept">
+    <strong>The key insight:</strong> A locker ends up open only if it is toggled an <em>odd</em> number of times. That happens exactly when the locker number has an odd number of factors — which is only true for <em>perfect squares</em>.
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-run" id="bPlay">Run</button>
+    <button class="btn btn-stop" id="bStop" disabled>Stop</button>
+    <button class="btn" id="bReset">Reset</button>
+    <button class="btn" id="bSkip">Skip to end</button>
+    <div class="speed-wrap">
+      <label>Speed</label>
+      <input type="range" id="spd" min="1" max="10" value="6">
+    </div>
+    <div class="person-pill" id="pill">Ready</div>
+  </div>
+
+  <div class="msg" id="msg">
+    <strong>How to use:</strong> Click Run to watch all 100 students toggle the lockers, then click any tile to see why it ended up open or closed.
+  </div>
+
+  <div class="body-row">
+
+    <!-- GRID COLUMN -->
+    <div>
+      <div class="grid-wrap">
+        <div class="locker-grid" id="grid"></div>
       </div>
-      <div class="person-tag" id="personTag">Ready</div>
-    </div>
-
-    <div class="msg-banner" id="msgBanner">
-      <strong>How to use:</strong> Click Run to animate all 100 people toggling their lockers. Then click any locker to see why it ended up open or closed.
-    </div>
-
-    <div class="lockers-wrap">
-      <div class="lockers-grid" id="grid"></div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-title">Factors of locker #<span id="selectedNum">—</span></div>
-        <div class="factor-chips" id="factorChips"><span style="font-size:13px;color:var(--text3)">Click any locker</span></div>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">Times toggled</div>
-        <div class="toggle-big" id="toggleBig">—</div>
-        <div style="font-size:13px;color:var(--text2)" id="toggleExpl"></div>
-        <div id="toggleVerdict"></div>
+      <div class="open-strip" id="strip">
+        <div class="strip-lbl">Open lockers — all perfect squares</div>
+        <div class="ochips" id="ochips"></div>
       </div>
     </div>
 
-    <div class="result-strip" id="resultStrip">
-      <h3>Open lockers — all perfect squares</h3>
-      <div class="open-chips" id="openChips"></div>
-      <p style="font-size:13.5px;color:#7a5800;line-height:1.6">
-        <strong>Why?</strong> Only square numbers have an <em>odd</em> number of factors. Every other number's factors come in distinct pairs (e.g. 1×6 and 2×3 for locker 6), giving an even toggle count. But a square number has one factor that is its own partner (e.g. 6×6=36), making the total count odd — so the locker stays open.
-      </p>
-    </div>
+    <!-- SIDE PANEL -->
+    <div class="side-panel">
 
-    <div class="insight" id="insight" style="display:none">
-      Click any locker above for a factor explanation.
+      <div class="stat-box">
+        <div class="sb-lbl">Times toggled</div>
+        <div class="sb-big" id="togBig">—</div>
+        <div class="sb-sub" id="togSub">Click any locker tile</div>
+        <div id="togVerd"></div>
+      </div>
+
+      <div class="factors-box">
+        <div class="sb-lbl">Factors of locker <span id="selNum">—</span></div>
+        <div class="chips" id="chips">
+          <span style="font-size:12px;color:var(--ink3)">Click a tile to inspect</span>
+        </div>
+      </div>
+
+      <div class="insight-box" id="insightBox">
+        <strong>Perfect squares</strong> have an <em>odd</em> number of factors because the square root pairs with itself. All other numbers have factors in distinct pairs — even count — so those lockers return to closed.
+      </div>
+
     </div>
   </div>
+
 </div>
 
 <script>
-const N=100;
-let state=new Array(N+1).fill(false);
-let running=false,person=0,timer=null;
+const N = 100;
+let state   = new Array(N+1).fill(false);
+let running = false, person = 0, timer = null;
 
-function factors(n){const f=[];for(let i=1;i<=n;i++)if(n%i===0)f.push(i);return f;}
-function isSquare(n){const s=Math.round(Math.sqrt(n));return s*s===n;}
+function factors(n){
+  const f=[]; for(let i=1;i<=n;i++) if(n%i===0) f.push(i); return f;
+}
+function isSq(n){ const s=Math.round(Math.sqrt(n)); return s*s===n; }
 
-const grid=document.getElementById('grid');
+// Build grid
+const gridEl = document.getElementById('grid');
 for(let i=1;i<=N;i++){
-  const d=document.createElement('div');
-  d.className='locker closed';
-  d.id='lk'+i;
-  d.innerHTML=`<span class="lock-num">${i}</span><span class="lock-state"></span>`;
-  d.onclick=()=>inspect(i);
-  grid.appendChild(d);
+  const d = document.createElement('div');
+  d.className = 'lk closed';
+  d.id = 'lk'+i;
+  d.innerHTML = `<span class="lk-num">${i}</span><span class="lk-dot"></span>`;
+  d.addEventListener('click', ()=>inspect(i));
+  gridEl.appendChild(d);
 }
 
-function renderLocker(i){
-  const el=document.getElementById('lk'+i);
-  const cls='locker '+(state[i]?(isSquare(i)?'open square':'open'):'closed');
-  el.className=cls;
-  el.querySelector('.lock-state').textContent=state[i]?'open':'';
+function renderLk(i){
+  const el = document.getElementById('lk'+i);
+  el.className = 'lk ' + (state[i] ? (isSq(i) ? 'open sq' : 'open') : 'closed');
 }
-
-function clearHighlights(){document.querySelectorAll('.locker.highlight').forEach(e=>e.classList.remove('highlight'));}
+function clearHL(){ document.querySelectorAll('.lk.hl').forEach(e=>e.classList.remove('hl')); }
 
 function stepPerson(p){
-  clearHighlights();
-  for(let i=p;i<=N;i+=p){
-    state[i]=!state[i];
-    renderLocker(i);
-    document.getElementById('lk'+i).classList.add('highlight');
+  clearHL();
+  for(let i=p; i<=N; i+=p){
+    state[i]=!state[i]; renderLk(i);
+    document.getElementById('lk'+i).classList.add('hl');
   }
-  document.getElementById('personTag').textContent=`Person ${p} / ${N}`;
-  document.getElementById('msgBanner').innerHTML=`<strong>Person ${p}</strong> is toggling every ${p}${p===1?'st':p===2?'nd':p===3?'rd':'th'} locker (${p}, ${p*2}, ${p*3}…).`;
+  document.getElementById('pill').textContent = `Student ${p} / ${N}`;
+  const suf = p===1?'st':p===2?'nd':p===3?'rd':'th';
+  document.getElementById('msg').innerHTML =
+    `<strong>Student ${p}</strong> toggles every ${p}${suf} locker (${p}, ${p*2}, ${p*3}…)`;
 }
 
 function runNext(){
-  if(!running||person>=N){running=false;finishSim();return;}
+  if(!running || person>=N){ running=false; finish(); return; }
   person++;
   stepPerson(person);
-  const speed=parseInt(document.getElementById('speedSlider').value);
-  timer=setTimeout(runNext,Math.max(15,700-speed*65));
+  const sp = parseInt(document.getElementById('spd').value);
+  timer = setTimeout(runNext, Math.max(14, 650-sp*60));
 }
 
-function finishSim(){
-  clearHighlights();
-  document.getElementById('btnPlay').disabled=false;
-  document.getElementById('btnStop').disabled=true;
-  const open=[];
-  for(let i=1;i<=N;i++)if(state[i])open.push(i);
-  const strip=document.getElementById('resultStrip');
-  strip.style.display='block';
-  const chips=document.getElementById('openChips');
-  chips.innerHTML='';
+function finish(){
+  clearHL();
+  document.getElementById('bPlay').disabled = false;
+  document.getElementById('bStop').disabled = true;
+  const open = [];
+  for(let i=1;i<=N;i++) if(state[i]) open.push(i);
+
+  const strip  = document.getElementById('strip');
+  strip.style.display = 'block';
+  const oc = document.getElementById('ochips');
+  oc.innerHTML = '';
   open.forEach(n=>{
-    const c=document.createElement('span');
-    c.className='ochip';
-    c.textContent=n;
-    c.onclick=()=>inspect(n);
-    chips.appendChild(c);
+    const c = document.createElement('span');
+    c.className = 'ochip' + (isSq(n) ? ' sq-chip' : '');
+    c.textContent = n;
+    c.addEventListener('click', ()=>inspect(n));
+    oc.appendChild(c);
   });
-  document.getElementById('personTag').textContent='Done';
-  document.getElementById('msgBanner').innerHTML=`<strong>${open.length} lockers are open.</strong> They are: ${open.join(', ')}. Click any gold number or locker to see why.`;
+
+  document.getElementById('pill').textContent = 'Done ✓';
+  document.getElementById('msg').innerHTML =
+    `<strong>${open.length} lockers are open</strong> — all perfect squares: ${open.join(', ')}. Click any tile to see why.`;
 }
 
 function reset(){
-  clearTimeout(timer);running=false;person=0;
-  state=new Array(N+1).fill(false);
-  for(let i=1;i<=N;i++)renderLocker(i);
-  clearHighlights();
-  document.getElementById('personTag').textContent='Ready';
-  document.getElementById('btnPlay').disabled=false;
-  document.getElementById('btnStop').disabled=true;
-  document.getElementById('resultStrip').style.display='none';
-  document.getElementById('insight').style.display='none';
-  document.getElementById('msgBanner').innerHTML='<strong>How to use:</strong> Click Run to animate all 100 people toggling their lockers. Then click any locker to see why it ended up open or closed.';
-  document.querySelectorAll('.locker.selected').forEach(e=>e.classList.remove('selected'));
-  document.getElementById('selectedNum').textContent='—';
-  document.getElementById('factorChips').innerHTML='<span style="font-size:13px;color:var(--text3)">Click any locker</span>';
-  document.getElementById('toggleBig').textContent='—';
-  document.getElementById('toggleExpl').textContent='';
-  document.getElementById('toggleVerdict').innerHTML='';
+  clearTimeout(timer); running=false; person=0;
+  state = new Array(N+1).fill(false);
+  for(let i=1;i<=N;i++) renderLk(i);
+  clearHL();
+  document.getElementById('pill').textContent = 'Ready';
+  document.getElementById('bPlay').disabled = false;
+  document.getElementById('bStop').disabled = true;
+  document.getElementById('strip').style.display = 'none';
+  document.getElementById('msg').innerHTML =
+    '<strong>How to use:</strong> Click Run to watch all 100 students toggle the lockers, then click any tile to see why it ended up open or closed.';
+  document.querySelectorAll('.lk.sel').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('selNum').textContent = '—';
+  document.getElementById('chips').innerHTML =
+    '<span style="font-size:12px;color:var(--ink3)">Click a tile to inspect</span>';
+  document.getElementById('togBig').textContent = '—';
+  document.getElementById('togSub').textContent = 'Click any locker tile';
+  document.getElementById('togVerd').innerHTML  = '';
+  document.getElementById('insightBox').innerHTML =
+    '<strong>Perfect squares</strong> have an <em>odd</em> number of factors because the square root pairs with itself. All other numbers have factors in distinct pairs — even count — so those lockers return to closed.';
 }
 
 function inspect(n){
-  document.querySelectorAll('.locker.selected').forEach(e=>e.classList.remove('selected'));
-  document.getElementById('lk'+n).classList.add('selected');
-  const f=factors(n);
-  const isSq=isSquare(n);
-  document.getElementById('selectedNum').textContent=n;
-  const container=document.getElementById('factorChips');
-  container.innerHTML='';
-  const used=new Set();
+  document.querySelectorAll('.lk.sel').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('lk'+n).classList.add('sel');
+
+  const f   = factors(n);
+  const sq  = isSq(n);
+  const root = Math.round(Math.sqrt(n));
+
+  document.getElementById('selNum').textContent = n;
+
+  // Render factor chips
+  const chips = document.getElementById('chips');
+  chips.innerHTML = '';
+  const used = new Set();
   f.forEach(x=>{
-    if(used.has(x))return;
-    const partner=n/x;
+    if(used.has(x)) return;
+    const partner = n/x;
+    const chip = document.createElement('span');
     if(x===partner){
-      const chip=document.createElement('span');
-      chip.className='fchip solo';
-      chip.title=`${x} pairs with itself: ${x}×${x}=${n}`;
-      chip.textContent=`${x}×${x}`;
-      container.appendChild(chip);
-      used.add(x);
+      chip.className = 'chip chip-solo';
+      chip.title = `${x} × ${x} = ${n}  ← square root!`;
+      chip.textContent = `${x}×${x}`;
     } else if(!used.has(partner)){
-      const chip=document.createElement('span');
-      chip.className='fchip pair';
-      chip.title=`Pair: ${x}×${partner}=${n}`;
-      chip.textContent=`${x}×${partner}`;
-      container.appendChild(chip);
-      used.add(x);used.add(partner);
+      chip.className = 'chip chip-pair';
+      chip.title = `${x} × ${partner} = ${n}`;
+      chip.textContent = `${x}×${partner}`;
     }
+    chips.appendChild(chip);
+    used.add(x); used.add(partner);
   });
-  document.getElementById('toggleBig').textContent=`${f.length}×`;
-  document.getElementById('toggleExpl').textContent=f.length%2===0?`Even — ends closed.`:`Odd — ends open!`;
-  const vEl=document.getElementById('toggleVerdict');
-  vEl.innerHTML=isSq?`<span class="verdict verdict-open">Perfect square — stays open</span>`:`<span class="verdict verdict-closed">Not a square — stays closed</span>`;
-  const insight=document.getElementById('insight');
-  insight.style.display='block';
-  insight.innerHTML=isSq
-    ?`<strong>Locker ${n} = ${Math.round(Math.sqrt(n))}²</strong> has <strong>${f.length} factors</strong> (odd count). The factor ${Math.round(Math.sqrt(n))} pairs with itself: ${Math.round(Math.sqrt(n))}×${Math.round(Math.sqrt(n))}=${n}. All other factors come in distinct pairs. Odd number of toggles → stays <strong>open</strong>.`
-    :`<strong>Locker ${n}</strong> has <strong>${f.length} factors</strong> (even count). Every factor has a different partner: ${f.filter(x=>x<=Math.sqrt(n)).map(x=>`${x}×${n/x}`).join(', ')}. Even number of toggles → stays <strong>closed</strong>.`;
+
+  document.getElementById('togBig').textContent = f.length + '×';
+  document.getElementById('togSub').textContent =
+    f.length%2===0 ? 'Even — returns closed' : 'Odd — stays open!';
+
+  const vEl = document.getElementById('togVerd');
+  if(sq)       vEl.innerHTML = `<span class="verdict-tag v-sq">Perfect square = ${root}²</span>`;
+  else if(state[n]) vEl.innerHTML = `<span class="verdict-tag v-open">Open</span>`;
+  else         vEl.innerHTML = `<span class="verdict-tag v-closed">Closed</span>`;
+
+  const ins = document.getElementById('insightBox');
+  if(sq){
+    const pairs = f.filter(x=>x<root).map(x=>`${x}×${n/x}`).join(', ');
+    ins.innerHTML =
+      `<strong>Locker ${n} = ${root}²</strong> has <strong>${f.length} factors</strong> — an odd count. ` +
+      `The root ${root} pairs with itself (${root}×${root}=${n}). ` +
+      (pairs ? `Other pairs: ${pairs}. ` : '') +
+      `Odd number of toggles → <strong>stays open.</strong>`;
+  } else {
+    const pairs = f.filter(x=>x<=Math.sqrt(n)).map(x=>`${x}×${n/x}`).join(', ');
+    ins.innerHTML =
+      `<strong>Locker ${n}</strong> has <strong>${f.length} factors</strong> — an even count. ` +
+      `Every factor has a distinct partner: ${pairs}. ` +
+      `Even number of toggles → <strong>returns closed.</strong>`;
+  }
 }
 
-document.getElementById('btnPlay').onclick=()=>{if(person===N)reset();running=true;document.getElementById('btnPlay').disabled=true;document.getElementById('btnStop').disabled=false;runNext();};
-document.getElementById('btnStop').onclick=()=>{running=false;clearTimeout(timer);document.getElementById('btnPlay').disabled=false;document.getElementById('btnStop').disabled=true;};
-document.getElementById('btnReset').onclick=reset;
-document.getElementById('btnSkip').onclick=()=>{clearTimeout(timer);running=false;state=new Array(N+1).fill(false);for(let p=1;p<=N;p++)for(let i=p;i<=N;i+=p)state[i]=!state[i];for(let i=1;i<=N;i++)renderLocker(i);person=N;document.getElementById('btnPlay').disabled=false;document.getElementById('btnStop').disabled=true;finishSim();};
+// Wire buttons
+document.getElementById('bPlay').addEventListener('click', ()=>{
+  if(person===N) reset();
+  running=true;
+  document.getElementById('bPlay').disabled=true;
+  document.getElementById('bStop').disabled=false;
+  runNext();
+});
+document.getElementById('bStop').addEventListener('click', ()=>{
+  running=false; clearTimeout(timer);
+  document.getElementById('bPlay').disabled=false;
+  document.getElementById('bStop').disabled=true;
+});
+document.getElementById('bReset').addEventListener('click', reset);
+document.getElementById('bSkip').addEventListener('click', ()=>{
+  clearTimeout(timer); running=false;
+  state=new Array(N+1).fill(false);
+  for(let p=1;p<=N;p++) for(let i=p;i<=N;i+=p) state[i]=!state[i];
+  for(let i=1;i<=N;i++) renderLk(i);
+  person=N;
+  document.getElementById('bPlay').disabled=false;
+  document.getElementById('bStop').disabled=true;
+  finish();
+});
 </script>
 </body>
 </html>
