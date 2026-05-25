@@ -3,461 +3,411 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>The Locker Puzzle — Ganita Prakash Grade 8</title>
+<title>The Locker Puzzle · Chapter 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --paper:  #faf8f4;
-  --paper2: #f3f0ea;
-  --paper3: #e8e3d8;
-  --ink:    #1c1a16;
-  --ink2:   #4a4640;
-  --ink3:   #8a8580;
-  --rule:   #d4cfc5;
-  --teal:   #1d6a72;
-  --teal2:  #2a8a94;
-  --teal-bg:#e8f4f5;
-  --teal-light:#9FE1CB;
-  --rust:   #b84a2a;
-  --rust-bg:#fdf0ec;
-  --gold:   #c08030;
-  --gold2:  #EF9F27;
-  --gold-bg:#fdf5e8;
-  --gold-light:#FAC775;
-  --sage:   #3a6a48;
-  --sage-bg:#eaf2ec;
-  --violet: #6a4a90;
-  --font:  'DM Sans', sans-serif;
-  --serif: 'Lora', Georgia, serif;
-  --mono:  'DM Mono', ui-monospace, monospace;
-  --shadow: 0 2px 12px rgba(28,26,22,.08);
+  --bg:#0b0e0c;
+  --s1:#101410;
+  --s2:#161c16;
+  --s3:#1e2820;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.11);
+  --text:#d8e8d4;
+  --text2:rgba(216,232,212,0.5);
+  --text3:rgba(216,232,212,0.25);
+  --green:#3ddc84;
+  --green2:#2ab868;
+  --green-dim:rgba(61,220,132,0.1);
+  --green-glow:rgba(61,220,132,0.35);
+  --gold:#f5c842;
+  --gold2:#e8a820;
+  --gold-dim:rgba(245,200,66,0.12);
+  --gold-glow:rgba(245,200,66,0.5);
+  --red:#e85040;
+  --red-dim:rgba(232,80,64,0.1);
+  --metal:#3a4a40;
+  --metal2:#2a3830;
+  --mono:'Space Mono',monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Syne',sans-serif;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+
+/* scanline overlay */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:998;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
 }
 
-body{
-  font-family:var(--font);background:var(--paper);color:var(--ink);
-  min-height:100vh;-webkit-font-smoothing:antialiased;
-  padding:28px 20px 40px;line-height:1.6;
-  background-image:
-    radial-gradient(circle at 15% 25%,rgba(192,128,48,.05) 0,transparent 50%),
-    radial-gradient(circle at 85% 75%,rgba(29,106,114,.05) 0,transparent 50%);
-}
-.app{max-width:960px;margin:0 auto}
+#app{position:fixed;inset:0;display:grid;grid-template-rows:54px 1fr;overflow:hidden}
 
-/* ── HEADER ── */
-.header{margin-bottom:24px;padding-bottom:18px;border-bottom:1.5px solid var(--rule)}
-.chapter-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--paper2);border:1.5px solid var(--rule);
-  border-radius:20px;padding:4px 14px 4px 10px;
-  font-size:11px;font-weight:600;letter-spacing:.6px;
-  text-transform:uppercase;color:var(--ink3);margin-bottom:12px
+/* ── TOPBAR ── */
+#topbar{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:14px;padding:0 20px;flex-shrink:0;
 }
-.badge-num{
-  width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;
-  font-size:12px;font-weight:700;font-family:var(--mono);
-  display:flex;align-items:center;justify-content:center
+.tb-badge{
+  font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 8px;border:1px solid rgba(61,220,132,0.3);border-radius:3px;
+  color:var(--green);background:var(--green-dim);
 }
-h1{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-.3px;line-height:1.2;margin-bottom:5px}
-.header-sub{font-size:14px;color:var(--ink2);max-width:580px;line-height:1.55}
-
-/* ── CONCEPT ── */
-.concept{
-  background:var(--gold-bg);border-left:3px solid var(--gold);
-  border-radius:0 8px 8px 0;padding:11px 16px;margin-bottom:16px;
-  font-family:var(--serif);font-style:italic;font-size:13.5px;color:#4a3010;line-height:1.65
+.tb-title{font-family:var(--serif);font-size:18px;color:var(--text)}
+.tb-title em{font-style:italic;color:var(--gold)}
+.tb-spacer{flex:1}
+.tb-controls{display:flex;align-items:center;gap:8px}
+.ctrl-btn{
+  padding:5px 14px;border:1px solid var(--border2);border-radius:4px;
+  background:transparent;color:var(--text2);font-family:var(--mono);font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .14s;
 }
-.concept strong{font-style:normal;font-weight:700;color:#3a2008}
-
-/* ── CONTROLS ── */
-.controls{
-  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
-  margin-bottom:14px
-}
-.btn{
-  padding:7px 16px;border:1.5px solid var(--rule);border-radius:8px;
-  font-family:var(--font);font-size:13px;font-weight:600;
-  color:var(--ink2);background:var(--paper);cursor:pointer;transition:all .12s
-}
-.btn:hover:not(:disabled){border-color:var(--ink3);color:var(--ink)}
-.btn:disabled{opacity:.35;cursor:not-allowed}
-.btn-run{background:var(--teal);border-color:var(--teal);color:#fff}
-.btn-run:hover:not(:disabled){background:#155a62;border-color:#155a62;color:#fff}
-.btn-stop{background:var(--rust);border-color:var(--rust);color:#fff}
-.btn-stop:hover:not(:disabled){background:#8a2a10;border-color:#8a2a10;color:#fff}
-.speed-wrap{display:flex;align-items:center;gap:7px}
-.speed-wrap label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
-.speed-wrap input{accent-color:var(--teal);width:80px;height:5px}
-.person-pill{
-  margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;
-  color:var(--ink2);background:var(--paper2);border:1.5px solid var(--rule);
-  border-radius:20px;padding:4px 12px
+.ctrl-btn:hover:not(:disabled){border-color:var(--green);color:var(--green)}
+.ctrl-btn:disabled{opacity:.25;cursor:not-allowed}
+.ctrl-btn.run{background:var(--green);border-color:var(--green);color:var(--bg)}
+.ctrl-btn.run:hover:not(:disabled){background:var(--green2);border-color:var(--green2)}
+.ctrl-btn.stop{background:var(--red);border-color:var(--red);color:#fff}
+.ctrl-btn.stop:hover:not(:disabled){filter:brightness(1.1)}
+.spd-wrap{display:flex;align-items:center;gap:7px}
+.spd-wrap label{font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+#spd{-webkit-appearance:none;width:70px;height:2px;background:var(--border2);border-radius:1px;outline:none;cursor:pointer}
+#spd::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--green);cursor:pointer}
+.student-display{
+  font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+  color:var(--text3);background:var(--s2);border:1px solid var(--border);
+  border-radius:3px;padding:4px 10px;min-width:100px;text-align:center;
 }
 
-/* ── MESSAGE BANNER ── */
-.msg{
-  background:var(--paper2);border:1.5px solid var(--rule);border-radius:9px;
-  padding:9px 14px;font-size:13px;color:var(--ink2);line-height:1.5;
-  min-height:40px;display:flex;align-items:center;margin-bottom:14px
-}
-.msg strong{color:var(--ink);font-weight:600}
+/* ── MAIN ── */
+#main{display:grid;grid-template-columns:1fr 260px;overflow:hidden;min-height:0}
 
-/* ── BODY: GRID + PANEL SIDE BY SIDE ── */
-.body-row{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
-@media(max-width:700px){.body-row{grid-template-columns:1fr}}
-
-/* ── LOCKER GRID ── */
-.grid-wrap{
-  background:var(--paper2);border:1.5px solid var(--rule);
-  border-radius:12px;padding:8px
+/* ── LOCKER ARENA ── */
+#arena{
+  display:flex;flex-direction:column;overflow:hidden;
+  padding:14px 16px;gap:10px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(61,220,132,0.04) 0%, transparent 60%),
+    var(--s1);
 }
-.locker-grid{
-  display:grid;grid-template-columns:repeat(10,1fr);gap:3px
+
+/* message ticker */
+#ticker{
+  font-family:var(--mono);font-size:10px;letter-spacing:.5px;
+  color:var(--text3);background:var(--s2);border:1px solid var(--border);
+  border-radius:4px;padding:7px 12px;flex-shrink:0;min-height:32px;
+  display:flex;align-items:center;gap:8px;
+}
+#ticker::before{
+  content:'▶';color:var(--green);font-size:8px;flex-shrink:0;
+}
+#ticker span{color:var(--text2)}
+#ticker .hi{color:var(--green)}
+#ticker .sq{color:var(--gold)}
+
+/* grid */
+#grid-wrap{
+  flex:1;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+#grid{
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  gap:4px;
+  width:100%;
+  max-width:600px;
 }
 .lk{
-  height:44px;border-radius:5px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;cursor:pointer;
-  border:1.5px solid;transition:all .13s;user-select:none;position:relative;
-  gap:1px
+  aspect-ratio:1;border-radius:5px;border:1px solid;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .12s,border-color .12s,box-shadow .12s;
+  position:relative;gap:1px;user-select:none;
 }
-
-/* CLOSED — clear white tile, visible border */
-.lk.closed{
-  background:#fff;
-  border-color:var(--rule)
-}
-.lk.closed:hover{border-color:var(--ink3);background:var(--paper2)}
-
-/* OPEN — non-square: teal */
-.lk.open{
-  background:#1D9E75;
-  border-color:#0F6E56
-}
-/* OPEN — perfect square: rich amber */
+/* CLOSED */
+.lk.closed{background:var(--metal2);border-color:var(--metal);color:var(--text3)}
+.lk.closed:hover{background:var(--metal);border-color:rgba(61,220,132,0.3);color:var(--text2)}
+/* OPEN — non-square */
+.lk.open{background:var(--green-dim);border-color:rgba(61,220,132,0.4);color:var(--green)}
+/* OPEN — perfect square: gold */
 .lk.open.sq{
-  background:#BA7517;
-  border-color:#633806;
-  box-shadow:0 0 0 2px #EF9F27
+  background:var(--gold-dim);border-color:rgba(245,200,66,0.5);
+  color:var(--gold);
+  box-shadow:0 0 0 1px rgba(245,200,66,0.2),0 0 10px rgba(245,200,66,0.15);
 }
-/* Highlight during animation */
-.lk.hl{outline:2px solid var(--teal2);outline-offset:1px}
-/* Selected by click */
-.lk.sel{outline:2.5px solid var(--violet);outline-offset:1px}
+/* highlighted during animation */
+.lk.hl{outline:1.5px solid var(--green);outline-offset:1px;background:rgba(61,220,132,0.18)!important;}
+/* selected by user click */
+.lk.sel{outline:2px solid #fff;outline-offset:1px}
 
-.lk-num{
-  font-family:var(--mono);font-size:9px;font-weight:600;line-height:1
-}
-.lk.closed .lk-num{color:var(--ink3)}
-.lk.open   .lk-num{color:rgba(255,255,255,.85);font-weight:700}
-.lk.open.sq .lk-num{color:#FAEEDA;font-weight:700}
+.lk-n{font-family:var(--mono);font-size:9px;font-weight:700;line-height:1}
+.lk-dot{width:3px;height:3px;border-radius:50%}
+.closed .lk-dot{background:var(--metal)}
+.open .lk-dot{background:var(--green);box-shadow:0 0 4px var(--green-glow)}
+.open.sq .lk-dot{background:var(--gold);box-shadow:0 0 6px var(--gold-glow)}
 
-/* tiny open indicator dot */
-.lk-dot{width:4px;height:4px;border-radius:50%;opacity:0}
-.lk.open .lk-dot{background:rgba(255,255,255,.6);opacity:1}
-.lk.open.sq .lk-dot{background:#FAC775;opacity:1}
+/* open-squares strip */
+#open-strip{
+  flex-shrink:0;
+  padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--s2);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:9px;
+  min-height:34px;
+  opacity:0;transition:opacity .4s;
+}
+#open-strip.visible{opacity:1}
+#open-strip .os-label{color:var(--text3);letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.os-chip{
+  padding:2px 8px;border-radius:3px;border:1px solid;font-weight:700;font-size:10px;
+  cursor:pointer;transition:all .12s;
+}
+.os-chip:hover{filter:brightness(1.15)}
+.os-chip.sq-chip{background:var(--gold-dim);border-color:rgba(245,200,66,0.4);color:var(--gold)}
 
-/* ── OPEN RESULT STRIP ── */
-.open-strip{
-  display:none;margin-top:10px;
-  background:var(--teal-bg);border:1.5px solid var(--teal-light);
-  border-radius:10px;padding:10px 12px
+/* ── RIGHT PANEL ── */
+#rpanel{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--s1);border-left:1px solid var(--border);
 }
-.open-strip .strip-lbl{
-  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-  color:var(--teal);margin-bottom:7px
-}
-.ochips{display:flex;flex-wrap:wrap;gap:5px}
-.ochip{
-  font-family:var(--mono);font-size:11.5px;font-weight:700;
-  padding:3px 9px;border-radius:6px;
-  background:#fff;border:1.5px solid var(--teal-light);color:var(--teal);
-  cursor:pointer;transition:all .1s
-}
-.ochip:hover,.ochip.sq-chip{
-  background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)
-}
+.rp-scroll{flex:1;overflow-y:auto;padding:16px 18px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
 
-/* ── SIDE PANEL ── */
-.side-panel{display:flex;flex-direction:column;gap:10px}
+.concept-block{
+  border-left:2px solid var(--gold);padding:10px 12px;
+  background:var(--gold-dim);border-radius:0 5px 5px 0;
+  margin-bottom:16px;
+}
+.concept-block p{font-family:var(--serif);font-style:italic;font-size:12.5px;color:rgba(245,200,66,0.8);line-height:1.7}
+.concept-block strong{font-style:normal;font-family:var(--sans);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
 
-.stat-box{
-  background:#fff;border:1.5px solid var(--rule);
-  border-radius:10px;padding:12px 14px
+/* stat */
+.stat{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:8px}
+.stat-lbl{font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.stat-big{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1.1}
+.stat-sub{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:3px}
+.verdict{
+  display:inline-flex;align-items:center;gap:5px;margin-top:6px;
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.5px;
+  padding:3px 8px;border-radius:3px;border:1px solid;
 }
-.sb-lbl{
-  font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-  color:var(--ink3);margin-bottom:5px
-}
-.sb-big{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--ink);line-height:1.1}
-.sb-sub{font-size:12px;color:var(--ink2);margin-top:3px}
-.verdict-tag{
-  display:inline-block;font-size:11px;font-weight:600;
-  padding:3px 9px;border-radius:6px;margin-top:6px;border:1.5px solid
-}
-.v-open{background:var(--teal-bg);border-color:var(--teal-light);color:var(--teal)}
-.v-sq  {background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)}
-.v-closed{background:var(--paper2);border-color:var(--rule);color:var(--ink3)}
+.v-open{background:var(--green-dim);border-color:rgba(61,220,132,0.3);color:var(--green)}
+.v-sq{background:var(--gold-dim);border-color:rgba(245,200,66,0.3);color:var(--gold)}
+.v-closed{background:var(--s3);border-color:var(--border);color:var(--text3)}
 
-.factors-box{
-  background:#fff;border:1.5px solid var(--rule);border-radius:10px;padding:12px 14px
+/* factors */
+.factors-label{font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:6px;margin-top:4px}
+.factor-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.fc{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:3px 8px;border-radius:3px;border:1px solid;
 }
-.chips{display:flex;flex-wrap:wrap;gap:4px}
-.chip{
-  font-family:var(--mono);font-size:11px;font-weight:600;
-  padding:3px 8px;border-radius:5px;border:1.5px solid
-}
-/* paired factors — green */
-.chip-pair{background:var(--sage-bg);border-color:#8abcaa;color:var(--sage)}
-/* self-paired square root — amber */
-.chip-solo{background:var(--gold-bg);border-color:var(--gold-light);color:var(--gold)}
+.fc-pair{background:rgba(61,220,132,0.08);border-color:rgba(61,220,132,0.25);color:var(--green)}
+.fc-sq{background:var(--gold-dim);border-color:rgba(245,200,66,0.35);color:var(--gold)}
 
 /* insight */
-.insight-box{
-  background:var(--gold-bg);border:1px solid #e0c080;
-  border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
-  padding:11px 13px;font-size:12.5px;color:#6b4400;line-height:1.6
-}
-.insight-box strong{color:#4a2e00;font-weight:600}
+.insight{padding:11px 13px;border-radius:5px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.15)}
+.insight p{font-family:var(--serif);font-style:italic;font-size:12px;color:rgba(245,200,66,0.7);line-height:1.7}
+.insight strong{font-style:normal;font-family:var(--sans);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
+
+/* grain */
+#grain{position:fixed;inset:0;pointer-events:none;z-index:997;opacity:.025;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 </style>
 </head>
 <body>
-<div class="app">
+<div id="grain"></div>
+<div id="app">
 
-  <div class="header">
-    <div class="chapter-badge"><div class="badge-num">1</div>Chapter 1 · A Square and A Cube</div>
-    <h1>The Locker Puzzle</h1>
-    <p class="header-sub">100 lockers, 100 students. Student n toggles every nth locker. Which lockers stay open? Run the simulation — then click any tile to find out why.</p>
-  </div>
-
-  <div class="concept">
-    <strong>The key insight:</strong> A locker ends up open only if it is toggled an <em>odd</em> number of times. That happens exactly when the locker number has an odd number of factors — which is only true for <em>perfect squares</em>.
-  </div>
-
-  <div class="controls">
-    <button class="btn btn-run" id="bPlay">Run</button>
-    <button class="btn btn-stop" id="bStop" disabled>Stop</button>
-    <button class="btn" id="bReset">Reset</button>
-    <button class="btn" id="bSkip">Skip to end</button>
-    <div class="speed-wrap">
-      <label>Speed</label>
-      <input type="range" id="spd" min="1" max="10" value="6">
+  <div id="topbar">
+    <div class="tb-badge">Ch·1</div>
+    <div class="tb-title">The Locker <em>Puzzle</em></div>
+    <div class="tb-spacer"></div>
+    <div class="tb-controls">
+      <div class="spd-wrap">
+        <label>Speed</label>
+        <input type="range" id="spd" min="1" max="10" value="6">
+      </div>
+      <button class="ctrl-btn" id="bSkip">Skip →</button>
+      <button class="ctrl-btn" id="bReset">Reset</button>
+      <button class="ctrl-btn" id="bStop" disabled>Stop</button>
+      <button class="ctrl-btn run" id="bPlay">▶ Run</button>
     </div>
-    <div class="person-pill" id="pill">Ready</div>
+    <div class="student-display" id="stu-display">Ready</div>
   </div>
 
-  <div class="msg" id="msg">
-    <strong>How to use:</strong> Click Run to watch all 100 students toggle the lockers, then click any tile to see why it ended up open or closed.
-  </div>
-
-  <div class="body-row">
-
-    <!-- GRID COLUMN -->
-    <div>
-      <div class="grid-wrap">
-        <div class="locker-grid" id="grid"></div>
-      </div>
-      <div class="open-strip" id="strip">
-        <div class="strip-lbl">Open lockers — all perfect squares</div>
-        <div class="ochips" id="ochips"></div>
-      </div>
+  <div id="main">
+    <div id="arena">
+      <div id="ticker"><span id="ticker-text">Press Run — watch all 100 students toggle the lockers, then click any tile to explore.</span></div>
+      <div id="grid-wrap"><div id="grid"></div></div>
+      <div id="open-strip"><span class="os-label">Open:</span><span id="os-chips"></span></div>
     </div>
 
-    <!-- SIDE PANEL -->
-    <div class="side-panel">
+    <div id="rpanel">
+      <div class="rp-scroll">
+        <div class="concept-block">
+          <p><strong>Key insight</strong><br>
+          A locker stays open only if toggled an odd number of times. That happens only when its number is a <em>perfect square</em> — because only squares have an odd number of factors.</p>
+        </div>
 
-      <div class="stat-box">
-        <div class="sb-lbl">Times toggled</div>
-        <div class="sb-big" id="togBig">—</div>
-        <div class="sb-sub" id="togSub">Click any locker tile</div>
-        <div id="togVerd"></div>
-      </div>
+        <div class="stat" id="stat-toggles">
+          <div class="stat-lbl">Times toggled</div>
+          <div class="stat-big" id="tog-big" style="color:var(--text3)">—</div>
+          <div class="stat-sub" id="tog-sub">Click any locker</div>
+          <div id="tog-verd"></div>
+        </div>
 
-      <div class="factors-box">
-        <div class="sb-lbl">Factors of locker <span id="selNum">—</span></div>
-        <div class="chips" id="chips">
-          <span style="font-size:12px;color:var(--ink3)">Click a tile to inspect</span>
+        <div class="factors-label">Factors of locker <span id="sel-num">—</span></div>
+        <div class="factor-chips" id="factor-chips">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">Click a tile to inspect</span>
+        </div>
+
+        <div class="insight">
+          <p><strong>Why only squares?</strong><br>
+          Every factor d of n pairs with n/d. Pairs cancel (toggle twice = closed). Only when d = n/d — i.e. d = √n — does a factor stand alone, giving an odd count of toggles and leaving the locker <span style="color:var(--gold)">open</span>.</p>
         </div>
       </div>
-
-      <div class="insight-box" id="insightBox">
-        <strong>Perfect squares</strong> have an <em>odd</em> number of factors because the square root pairs with itself. All other numbers have factors in distinct pairs — even count — so those lockers return to closed.
-      </div>
-
     </div>
   </div>
-
 </div>
 
 <script>
-const N = 100;
-let state   = new Array(N+1).fill(false);
-let running = false, person = 0, timer = null;
+const N=100;
+let state=new Array(N+1).fill(false);
+let running=false,person=0,timer=null;
 
-function factors(n){
-  const f=[]; for(let i=1;i<=n;i++) if(n%i===0) f.push(i); return f;
-}
-function isSq(n){ const s=Math.round(Math.sqrt(n)); return s*s===n; }
+function isSq(n){const s=Math.round(Math.sqrt(n));return s*s===n;}
+function factors(n){const f=[];for(let i=1;i<=n;i++)if(n%i===0)f.push(i);return f;}
 
 // Build grid
-const gridEl = document.getElementById('grid');
+const grid=document.getElementById('grid');
 for(let i=1;i<=N;i++){
-  const d = document.createElement('div');
-  d.className = 'lk closed';
-  d.id = 'lk'+i;
-  d.innerHTML = `<span class="lk-num">${i}</span><span class="lk-dot"></span>`;
-  d.addEventListener('click', ()=>inspect(i));
-  gridEl.appendChild(d);
+  const d=document.createElement('div');
+  d.className='lk closed';d.id='lk'+i;
+  d.innerHTML=`<span class="lk-n">${i}</span><div class="lk-dot"></div>`;
+  d.addEventListener('click',()=>inspect(i));
+  grid.appendChild(d);
 }
 
 function renderLk(i){
-  const el = document.getElementById('lk'+i);
-  el.className = 'lk ' + (state[i] ? (isSq(i) ? 'open sq' : 'open') : 'closed');
+  const el=document.getElementById('lk'+i);
+  el.className='lk '+(state[i]?(isSq(i)?'open sq':'open'):'closed');
 }
-function clearHL(){ document.querySelectorAll('.lk.hl').forEach(e=>e.classList.remove('hl')); }
+function clearHL(){document.querySelectorAll('.lk.hl').forEach(e=>e.classList.remove('hl'));}
 
 function stepPerson(p){
   clearHL();
-  for(let i=p; i<=N; i+=p){
-    state[i]=!state[i]; renderLk(i);
+  for(let i=p;i<=N;i+=p){
+    state[i]=!state[i];renderLk(i);
     document.getElementById('lk'+i).classList.add('hl');
   }
-  document.getElementById('pill').textContent = `Student ${p} / ${N}`;
-  const suf = p===1?'st':p===2?'nd':p===3?'rd':'th';
-  document.getElementById('msg').innerHTML =
-    `<strong>Student ${p}</strong> toggles every ${p}${suf} locker (${p}, ${p*2}, ${p*3}…)`;
+  document.getElementById('stu-display').textContent=`Student ${p} / ${N}`;
+  const suf=p===1?'st':p===2?'nd':p===3?'rd':'th';
+  setTicker(`Student <span class="hi">${p}</span> toggles every ${p}${suf} locker`);
 }
 
+function setTicker(html){document.getElementById('ticker-text').innerHTML=html;}
+
 function runNext(){
-  if(!running || person>=N){ running=false; finish(); return; }
+  if(!running||person>=N){running=false;finish();return;}
   person++;
   stepPerson(person);
-  const sp = parseInt(document.getElementById('spd').value);
-  timer = setTimeout(runNext, Math.max(14, 650-sp*60));
+  const sp=parseInt(document.getElementById('spd').value);
+  timer=setTimeout(runNext,Math.max(10,600-sp*55));
 }
 
 function finish(){
   clearHL();
-  document.getElementById('bPlay').disabled = false;
-  document.getElementById('bStop').disabled = true;
-  const open = [];
-  for(let i=1;i<=N;i++) if(state[i]) open.push(i);
+  document.getElementById('bPlay').disabled=false;
+  document.getElementById('bStop').disabled=true;
+  const open=[];
+  for(let i=1;i<=N;i++)if(state[i])open.push(i);
+  document.getElementById('stu-display').textContent='Done ✓';
 
-  const strip  = document.getElementById('strip');
-  strip.style.display = 'block';
-  const oc = document.getElementById('ochips');
-  oc.innerHTML = '';
+  const strip=document.getElementById('open-strip');
+  strip.classList.add('visible');
+  const chips=document.getElementById('os-chips');
+  chips.innerHTML='';
   open.forEach(n=>{
-    const c = document.createElement('span');
-    c.className = 'ochip' + (isSq(n) ? ' sq-chip' : '');
-    c.textContent = n;
-    c.addEventListener('click', ()=>inspect(n));
-    oc.appendChild(c);
+    const c=document.createElement('span');
+    c.className='os-chip sq-chip';c.textContent=n;
+    c.addEventListener('click',()=>inspect(n));
+    chips.appendChild(c);
   });
 
-  document.getElementById('pill').textContent = 'Done ✓';
-  document.getElementById('msg').innerHTML =
-    `<strong>${open.length} lockers are open</strong> — all perfect squares: ${open.join(', ')}. Click any tile to see why.`;
+  setTicker(`<span class="sq">${open.length} lockers open</span> — all perfect squares: <span class="sq">${open.join(', ')}</span>. Click any tile to explore why.`);
 }
 
-function reset(){
-  clearTimeout(timer); running=false; person=0;
-  state = new Array(N+1).fill(false);
-  for(let i=1;i<=N;i++) renderLk(i);
+function doReset(){
+  clearTimeout(timer);running=false;person=0;
+  state=new Array(N+1).fill(false);
+  for(let i=1;i<=N;i++)renderLk(i);
   clearHL();
-  document.getElementById('pill').textContent = 'Ready';
-  document.getElementById('bPlay').disabled = false;
-  document.getElementById('bStop').disabled = true;
-  document.getElementById('strip').style.display = 'none';
-  document.getElementById('msg').innerHTML =
-    '<strong>How to use:</strong> Click Run to watch all 100 students toggle the lockers, then click any tile to see why it ended up open or closed.';
+  document.getElementById('bPlay').disabled=false;
+  document.getElementById('bStop').disabled=true;
+  document.getElementById('stu-display').textContent='Ready';
+  document.getElementById('open-strip').classList.remove('visible');
+  document.getElementById('os-chips').innerHTML='';
+  setTicker('Press Run — watch all 100 students toggle the lockers, then click any tile to explore.');
   document.querySelectorAll('.lk.sel').forEach(e=>e.classList.remove('sel'));
-  document.getElementById('selNum').textContent = '—';
-  document.getElementById('chips').innerHTML =
-    '<span style="font-size:12px;color:var(--ink3)">Click a tile to inspect</span>';
-  document.getElementById('togBig').textContent = '—';
-  document.getElementById('togSub').textContent = 'Click any locker tile';
-  document.getElementById('togVerd').innerHTML  = '';
-  document.getElementById('insightBox').innerHTML =
-    '<strong>Perfect squares</strong> have an <em>odd</em> number of factors because the square root pairs with itself. All other numbers have factors in distinct pairs — even count — so those lockers return to closed.';
+  document.getElementById('sel-num').textContent='—';
+  document.getElementById('factor-chips').innerHTML='<span style="font-family:var(--mono);font-size:10px;color:var(--text3)">Click a tile to inspect</span>';
+  document.getElementById('tog-big').textContent='—';
+  document.getElementById('tog-big').style.color='var(--text3)';
+  document.getElementById('tog-sub').textContent='Click any locker';
+  document.getElementById('tog-verd').innerHTML='';
 }
 
 function inspect(n){
   document.querySelectorAll('.lk.sel').forEach(e=>e.classList.remove('sel'));
   document.getElementById('lk'+n).classList.add('sel');
+  const f=factors(n);
+  const sq=isSq(n);
+  const root=Math.round(Math.sqrt(n));
+  document.getElementById('sel-num').textContent=n;
+  document.getElementById('tog-big').textContent=f.length+'×';
+  document.getElementById('tog-big').style.color=sq?'var(--gold)':f.length%2===0?'var(--green)':'var(--text)';
+  document.getElementById('tog-sub').textContent=f.length%2===0?'Even → returns closed':'Odd → stays open!';
 
-  const f   = factors(n);
-  const sq  = isSq(n);
-  const root = Math.round(Math.sqrt(n));
+  const vEl=document.getElementById('tog-verd');
+  if(sq)vEl.innerHTML=`<div class="verdict v-sq">★ Perfect square = ${root}²</div>`;
+  else if(state[n])vEl.innerHTML=`<div class="verdict v-open">Open</div>`;
+  else vEl.innerHTML=`<div class="verdict v-closed">Closed</div>`;
 
-  document.getElementById('selNum').textContent = n;
-
-  // Render factor chips
-  const chips = document.getElementById('chips');
-  chips.innerHTML = '';
-  const used = new Set();
+  // Factor chips
+  const fc=document.getElementById('factor-chips');
+  fc.innerHTML='';
+  const used=new Set();
   f.forEach(x=>{
-    if(used.has(x)) return;
-    const partner = n/x;
-    const chip = document.createElement('span');
+    if(used.has(x))return;
+    const partner=n/x;
+    const chip=document.createElement('span');
     if(x===partner){
-      chip.className = 'chip chip-solo';
-      chip.title = `${x} × ${x} = ${n}  ← square root!`;
-      chip.textContent = `${x}×${x}`;
+      chip.className='fc fc-sq';chip.title=`${x}×${x}=${n} — square root!`;chip.textContent=`${x}²`;
     } else if(!used.has(partner)){
-      chip.className = 'chip chip-pair';
-      chip.title = `${x} × ${partner} = ${n}`;
-      chip.textContent = `${x}×${partner}`;
+      chip.className='fc fc-pair';chip.title=`${x}×${partner}=${n}`;chip.textContent=`${x}·${partner}`;
     }
-    chips.appendChild(chip);
-    used.add(x); used.add(partner);
+    fc.appendChild(chip);
+    used.add(x);used.add(partner);
   });
-
-  document.getElementById('togBig').textContent = f.length + '×';
-  document.getElementById('togSub').textContent =
-    f.length%2===0 ? 'Even — returns closed' : 'Odd — stays open!';
-
-  const vEl = document.getElementById('togVerd');
-  if(sq)       vEl.innerHTML = `<span class="verdict-tag v-sq">Perfect square = ${root}²</span>`;
-  else if(state[n]) vEl.innerHTML = `<span class="verdict-tag v-open">Open</span>`;
-  else         vEl.innerHTML = `<span class="verdict-tag v-closed">Closed</span>`;
-
-  const ins = document.getElementById('insightBox');
-  if(sq){
-    const pairs = f.filter(x=>x<root).map(x=>`${x}×${n/x}`).join(', ');
-    ins.innerHTML =
-      `<strong>Locker ${n} = ${root}²</strong> has <strong>${f.length} factors</strong> — an odd count. ` +
-      `The root ${root} pairs with itself (${root}×${root}=${n}). ` +
-      (pairs ? `Other pairs: ${pairs}. ` : '') +
-      `Odd number of toggles → <strong>stays open.</strong>`;
-  } else {
-    const pairs = f.filter(x=>x<=Math.sqrt(n)).map(x=>`${x}×${n/x}`).join(', ');
-    ins.innerHTML =
-      `<strong>Locker ${n}</strong> has <strong>${f.length} factors</strong> — an even count. ` +
-      `Every factor has a distinct partner: ${pairs}. ` +
-      `Even number of toggles → <strong>returns closed.</strong>`;
-  }
 }
 
-// Wire buttons
-document.getElementById('bPlay').addEventListener('click', ()=>{
-  if(person===N) reset();
+document.getElementById('bPlay').addEventListener('click',()=>{
+  if(person===N)doReset();
   running=true;
   document.getElementById('bPlay').disabled=true;
   document.getElementById('bStop').disabled=false;
   runNext();
 });
-document.getElementById('bStop').addEventListener('click', ()=>{
-  running=false; clearTimeout(timer);
+document.getElementById('bStop').addEventListener('click',()=>{
+  running=false;clearTimeout(timer);
   document.getElementById('bPlay').disabled=false;
   document.getElementById('bStop').disabled=true;
 });
-document.getElementById('bReset').addEventListener('click', reset);
-document.getElementById('bSkip').addEventListener('click', ()=>{
-  clearTimeout(timer); running=false;
+document.getElementById('bReset').addEventListener('click',doReset);
+document.getElementById('bSkip').addEventListener('click',()=>{
+  clearTimeout(timer);running=false;
   state=new Array(N+1).fill(false);
-  for(let p=1;p<=N;p++) for(let i=p;i<=N;i+=p) state[i]=!state[i];
-  for(let i=1;i<=N;i++) renderLk(i);
+  for(let p=1;p<=N;p++)for(let i=p;i<=N;i+=p)state[i]=!state[i];
+  for(let i=1;i<=N;i++)renderLk(i);
   person=N;
   document.getElementById('bPlay').disabled=false;
   document.getElementById('bStop').disabled=true;
