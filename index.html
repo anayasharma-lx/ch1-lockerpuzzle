@@ -16,8 +16,8 @@
   --border:rgba(255,255,255,0.06);
   --border2:rgba(255,255,255,0.11);
   --text:#d8e8d4;
-  --text2:rgba(216,232,212,0.5);
-  --text3:rgba(216,232,212,0.25);
+  --text2:rgba(216,232,212,0.78);
+  --text3:rgba(216,232,212,0.55);
   --green:#3ddc84;
   --green2:#2ab868;
   --green-dim:rgba(61,220,132,0.1);
@@ -50,7 +50,7 @@ body::after{
   display:flex;align-items:center;gap:14px;padding:0 20px;flex-shrink:0;
 }
 .tb-badge{
-  font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
   padding:3px 8px;border:1px solid rgba(61,220,132,0.3);border-radius:3px;
   color:var(--green);background:var(--green-dim);
 }
@@ -60,7 +60,7 @@ body::after{
 .tb-controls{display:flex;align-items:center;gap:8px}
 .ctrl-btn{
   padding:5px 14px;border:1px solid var(--border2);border-radius:4px;
-  background:transparent;color:var(--text2);font-family:var(--mono);font-size:9px;
+  background:transparent;color:var(--text2);font-family:var(--mono);font-size:10px;
   letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .14s;
 }
 .ctrl-btn:hover:not(:disabled){border-color:var(--green);color:var(--green)}
@@ -70,7 +70,7 @@ body::after{
 .ctrl-btn.stop{background:var(--red);border-color:var(--red);color:#fff}
 .ctrl-btn.stop:hover:not(:disabled){filter:brightness(1.1)}
 .spd-wrap{display:flex;align-items:center;gap:7px}
-.spd-wrap label{font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.spd-wrap label{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
 #spd{-webkit-appearance:none;width:70px;height:2px;background:var(--border2);border-radius:1px;outline:none;cursor:pointer}
 #spd::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--green);cursor:pointer}
 .student-display{
@@ -99,7 +99,7 @@ body::after{
   display:flex;align-items:center;gap:8px;
 }
 #ticker::before{
-  content:'▶';color:var(--green);font-size:8px;flex-shrink:0;
+  content:'▶';color:var(--green);font-size:10px;flex-shrink:0;
 }
 #ticker span{color:var(--text2)}
 #ticker .hi{color:var(--green)}
@@ -139,7 +139,7 @@ body::after{
 /* selected by user click */
 .lk.sel{outline:2px solid #fff;outline-offset:1px}
 
-.lk-n{font-family:var(--mono);font-size:9px;font-weight:700;line-height:1}
+.lk-n{font-family:var(--mono);font-size:10px;font-weight:700;line-height:1}
 .lk-dot{width:3px;height:3px;border-radius:50%}
 .closed .lk-dot{background:var(--metal)}
 .open .lk-dot{background:var(--green);box-shadow:0 0 4px var(--green-glow)}
@@ -150,7 +150,7 @@ body::after{
   flex-shrink:0;
   padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--s2);
   display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:9px;
+  font-family:var(--mono);font-size:10px;
   min-height:34px;
   opacity:0;transition:opacity .4s;
 }
@@ -182,10 +182,10 @@ body::after{
 .stat{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:11px 13px;margin-bottom:8px}
 .stat-lbl{font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
 .stat-big{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1.1}
-.stat-sub{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:3px}
+.stat-sub{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:3px}
 .verdict{
   display:inline-flex;align-items:center;gap:5px;margin-top:6px;
-  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.5px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;
   padding:3px 8px;border-radius:3px;border:1px solid;
 }
 .v-open{background:var(--green-dim);border-color:rgba(61,220,132,0.3);color:var(--green)}
@@ -205,12 +205,52 @@ body::after{
 /* insight */
 .insight{padding:11px 13px;border-radius:5px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.15)}
 .insight p{font-family:var(--serif);font-style:italic;font-size:12px;color:rgba(245,200,66,0.7);line-height:1.7}
-.insight strong{font-style:normal;font-family:var(--sans);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
+.insight strong{font-style:normal;font-family:var(--sans);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
 
 /* grain */
 #grain{position:fixed;inset:0;pointer-events:none;z-index:997;opacity:.025;
 background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* ══ MOBILE / TABLET ══════════════════════════════ */
+@media (max-width: 768px) {
+  html, body { overflow: auto; height: auto; }
+  #app { position: static; display: flex; flex-direction: column; min-height: 100dvh; }
+  #topbar {
+    height: auto; padding: 10px 14px; flex-wrap: wrap; gap: 8px;
+  }
+  .tb-title { font-size: 16px; }
+  .tb-controls { flex-wrap: wrap; gap: 6px; }
+  .spd-wrap { order: 1; }
+  .student-display { display: none; }
+  #main { grid-template-columns: 1fr; overflow: visible; }
+  #arena {
+    padding: 10px 12px; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  #grid-wrap { flex: none; }
+  #grid { gap: 3px; }
+  .lk { border-radius: 4px; }
+  .lk-n { font-size: 9px; }
+  #rpanel {
+    border-left: none;
+    overflow: visible;
+    max-height: none;
+  }
+  .rp-scroll { overflow: visible; padding: 14px 16px; }
+  .stat-big { font-size: 22px; }
+  .concept-block p { font-size: 13px; }
+  .insight p { font-size: 12px; }
+  #open-strip { font-size: 11px; }
+  .os-chip { font-size: 11px; padding: 3px 9px; }
+}
+@media (max-width: 480px) {
+  .tb-title { font-size: 15px; }
+  .ctrl-btn { padding: 5px 10px; font-size: 9px; }
+  .lk-n { font-size: 8px; }
+  #grid { gap: 2px; }
+}
+
 </style>
 </head>
 <body>
